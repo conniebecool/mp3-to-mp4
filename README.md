@@ -1,98 +1,85 @@
-<p align="center">
-  <a href="https://devfel.com/" rel="noopener">
- <img  src="https://devfel.com/imgs/devfel-logo-01.JPG" alt="DevFel"></a>
-</p>
+# MP3 to MP4 Converter
 
-# 🎵 MP3 to MP4 Converter 🎬
+This script converts MP3 files with embedded cover images to MP4 videos. Each MP4 video will display the cover image for the duration of the audio.
 
-Convert your favorite MP3 files into MP4 videos with static images, perfect for uploading to platforms like YouTube.
+## Features
 
-## 🌟 Features
+- Extracts cover images from MP3 files.
+- Converts MP3 files to MP4 videos with the extracted cover image.
+- Automatically skips MP3 files that already have corresponding MP4 files in the output directory.
+- Handles various image modes and converts them to a compatible format for video encoding.
+- Allows optional audio clipping based on start and end times.
 
-- Convert any MP3 file into an MP4 video.
-- Add a static image to your audio, ideal for music uploads on video platforms.
-- (Optional) Specify a start and end time to convert only a segment of your audio.
+## Prerequisites
 
-## ⚙️ Installation and Setup
+Ensure you have the following installed:
 
-1. **Clone the Repository**:
-   Begin by cloning the repository to your local machine:
+- Python 3.6 or higher
+- pip (Python package installer)
 
-   ```bash
-   git clone https://github.com/devfel/mp3-to-mp4.git
-   ```
+## Installation
 
-2. **Navigate to the Directory**:
+1. Clone this repository:
 
-   ```bash
-   cd mp3-to-mp4
-   ```
+    ```bash
+    git clone https://github.com/conniebecool/mp3-to-mp4.git
+    cd mp3-to-mp4
+    ```
 
-3. **Install the Required Libraries**:
-   Ensure you have the required libraries installed:
-   ```bash
-   pip install moviepy pillow
-   ```
+2. Install the required Python packages:
 
-## 🚀 Getting Started
+    ```bash
+    pip install moviepy
+    pip install mutagen
+    pip install pillow
+    ```
 
-1. Place your MP3 files and the desired image inside the `input` directory.
-2. Run `main.py` to initiate the conversion.
-3. Collect the converted MP4 files from the `output` directory.
+## Usage
 
-## 📖 Usage Examples
+1. Place your MP3 files in the `./input` directory.
 
-- **Basic Conversion**:
-  Convert an entire MP3 file with a static image:
+2. Run the script:
 
-  ```python
-  mp3_to_mp4("sample.mp3", "background-image.jpg")
-  ```
+    ```bash
+    python mp3_to_mp4_converter.py
+    ```
 
-- **Segmented Conversion**:
-  Convert a specific segment of the MP3 file:
+3. Converted MP4 files will be saved in the `./output` directory.
 
-  ```python
-  mp3_to_mp4("sample.mp3", "background-image.jpg", "1:30:00", "1:35:00")
-  mp3_to_mp4("sample.mp3", "background-image.jpg", "H:MM:SS", "H:MM:SS")
-  ```
+### Script Details
 
-- **Entire Folder Conversion**:
-  To convert all MP3 files present in the `input` directory at once using a single background image, you can use the `mp3_to_mp4_folder` function:
+#### extract_cover_image(mp3_filepath)
 
-  Simply call the `mp3_to_mp4_folder` function with the desired background image:
+Extracts the cover image from the MP3 file.
 
-  ```python
-  mp3_to_mp4_folder("background-image.jpg")
-  ```
+- Converts images in 'RGBA' or 'P' mode to 'RGB' mode.
+- Saves the cover image as `cover.jpg` in the input directory.
+- Returns the path to the saved cover image.
 
-  This will convert all MP3 files in the `input` directory using the specified image as the background, and save the resulting MP4 files in the `output` directory.
+#### mp3_to_mp4(mp3_filename, start_time=None, end_time=None)
 
-## 🔥 Execution
+Converts a single MP3 file to an MP4 file.
 
-To run the program, navigate to the project's main directory and execute:
+- Checks if the output file already exists and skips conversion if it does.
+- Sets the duration of the image to match the audio duration.
+- Resizes the video to 720x720 square resolution.
+- Saves the output video in the `./output` directory.
 
-```bash
-python main.py
-```
+#### mp3_to_mp4_folder()
 
-## 🔧 Requirements
+Processes all MP3 files in the `./input` directory.
 
-- Python 3.x
-- `moviepy` library
-- Pillow (PIL)
-- (Optional) ImageMagick for advanced image processing.
+- Converts each MP3 file to MP4 using the `mp3_to_mp4` function.
+- Prints errors if any occur during processing.
 
-## 📂 Directory Structure
+## Contributing
 
-- `input/`: Place your MP3 and image files here.
-- `output/`: Find your converted MP4 files here.
-- `main.py`: Main script to run the conversion.
+Feel free to open issues or submit pull requests. For major changes, please open an issue first to discuss what you would like to change.
 
-## 🙌 Contribution
+## License
 
-Feel free to fork the project, open issues, and provide pull requests.
+[MIT](LICENSE)
 
-## 📜 License
+## Contact
 
-This project is licensed under the MIT License.
+For any issues or questions, please contact [conniebecool](https://github.com/conniebecool).
