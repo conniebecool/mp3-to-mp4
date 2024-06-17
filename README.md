@@ -41,7 +41,7 @@ Ensure you have the following installed:
 2. Run the script:
 
     ```bash
-    python mp3_to_mp4_converter.py
+    python main.py
     ```
 
 3. Converted MP4 files will be saved in the `./output` directory.
